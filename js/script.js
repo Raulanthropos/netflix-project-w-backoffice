@@ -61,14 +61,14 @@ const getMusicMovies = async () => {
     console.log(imgData);
     selectedGenre.innerText = categoryData[0];
     movieCoverGenre.forEach(img => {
-        imgData.forEach(data => {
-        img.innerHTML = `<img class="movie-cover movie-cover-genre" src="${data}">`
-    })})
+        img.innerHTML = `<img class="movie-cover movie-cover-genre" src="${imgData}">`
+    })
+}
     hiddenPrompts.forEach(prompt => {
         prompt.classList.remove("d-none");
     })
 
-}
+
 musicBtn.addEventListener('click', getMusicMovies);
 horrorBtn.addEventListener('click', getHorrorMovies);
 comedyBtn.addEventListener('click', getComedyMovies);
