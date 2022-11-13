@@ -96,7 +96,7 @@ const details = async  () => {
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <a class= "col btn btn-success" href="backoffice.html?appointmentId=${urlData[i]}">Edit</a>
+              <a class= "col btn btn-success" href="backoffice.html?movieId=${urlData[i]}">Edit</a>
             </div>
           </div>
         </div>`
@@ -127,7 +127,7 @@ const details = async  () => {
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <a class= "col btn btn-success" href="backoffice.html?appointmentId=${urlData[i]}">Edit</a>
+              <a class= "col btn btn-success" href="backoffice.html?movieId=${urlData[i]}">Edit</a>
             </div>
           </div>
         </div>`
@@ -157,7 +157,7 @@ const details = async  () => {
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <a class= "col btn btn-success" href="backoffice.html?appointmentId=${urlData[i]}">Edit</a>
+              <a class= "col btn btn-success" href="backoffice.html?movieId=${urlData[i]}">Edit</a>
             </div>
           </div>
         </div>`

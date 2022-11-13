@@ -2,7 +2,8 @@ const moviesUrl = "https://striveschool-api.herokuapp.com/api/movies/";
 const horrorMoviesUrl = "https://striveschool-api.herokuapp.com/api/movies/horror";
 const comedyMoviesUrl = "https://striveschool-api.herokuapp.com/api/movies/comedy";
 const musicMoviesUrl = "https://striveschool-api.herokuapp.com/api/movies/music";
-
+const params = new URLSearchParams(window.location.search)
+const movieId = params.get('movieId');
 
 
 const getallHorrorMovies = async() => {
@@ -69,7 +70,18 @@ const onFormSubmit = async (event) => {
   }
 
   window.onload = async () => {
-    await getallHorrorMovies();
-    await getallMusicMovies();
-    await getallComedyMovies();
-  };
+      // We are editing - let's get the event to edit,
+      // and prefill the form with its info.
+      const response = await fetch(`https://striveschool-api.herokuapp.com/api/movies/id/${movieId}`, {headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzZjZjY1N2Q0YmUzZDAwMTU4NDYwMGQiLCJpYXQiOjE2NjgwODUzMzUsImV4cCI6MTY2OTI5NDkzNX0.Gr11ODEGnFQLDHzWp7kIa-hafK6XaSswM75muzNXr5o",
+        "Content-Type": "application/json"
+      }})
+      const movie = await response.json();
+      console.log(response, movie);
+
+ document.getElementById("e-name").value = movie.name;
+ document.getElementById("description").value = movie.description;
+ document.getElementById("category").value = movie.category;
+ document.getElementById("image-url").value = movie.imageUrl;
+      };
