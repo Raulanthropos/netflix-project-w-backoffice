@@ -5,6 +5,7 @@ const musicMoviesUrl = "https://striveschool-api.herokuapp.com/api/movies/music"
 const params = new URLSearchParams(window.location.search)
 const movieId = params.get('movieId');
 const editBtn = document.getElementById("edit-button");
+const deleteBtn = document.getElementById("delete-button");
 
 
 const getallHorrorMovies = async() => {
@@ -88,6 +89,15 @@ const onFormSubmit = async (event) => {
         "Content-Type": "application/json"
       }}
 
+      const optionDelete = {
+        method: 'DELETE',
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzZjZjY1N2Q0YmUzZDAwMTU4NDYwMGQiLCJpYXQiOjE2NjgwODUzMzUsImV4cCI6MTY2OTI5NDkzNX0.Gr11ODEGnFQLDHzWp7kIa-hafK6XaSswM75muzNXr5o",
+          "Content-Type": "application/json"
+        }
+      }
+
  if (movieId) {
       const response = await fetch(`https://striveschool-api.herokuapp.com/api/movies/id/${movieId}`, options);
       const movie = await response.json();
@@ -107,5 +117,17 @@ const onFormSubmit = async (event) => {
     }
   }
 
+  const deleteMovie = async () => {
+    const response = await fetch(`https://striveschool-api.herokuapp.com/api/movies/${movieId}`, optionDelete);
+    if(confirm("Do you really want to delete this movie?")) {
+      if (response.ok) {
+        alert("The movie was deleted successfully! RIP...")
+      } else {
+        throw new Error("Error! Please try again!")
+      }
+    }
+  }
+
   editBtn.addEventListener('click', editMovie);
+  deleteBtn.addEventListener('click', deleteMovie);
 } 
