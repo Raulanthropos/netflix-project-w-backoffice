@@ -33,7 +33,6 @@ const getHorrorMovies = async () => {
     hiddenPrompts.forEach(prompt => {
         prompt.classList.remove("d-none");
     })
-    console.log(horrorData);
 }
 
 const getComedyMovies = async () => {
@@ -63,10 +62,10 @@ const getMusicMovies = async () => {
     movieCoverGenre.forEach(img => {
         img.innerHTML = `<img class="movie-cover movie-cover-genre" src="${imgData}">`
     })
-}
     hiddenPrompts.forEach(prompt => {
         prompt.classList.remove("d-none");
     })
+}
 
 
 musicBtn.addEventListener('click', getMusicMovies);
