@@ -7,9 +7,9 @@ const hiddenPrompts = document.querySelectorAll(".d-none");
 const horrorUrl = "https://striveschool-api.herokuapp.com/api/movies/horror";
 const comedyUrl = "https://striveschool-api.herokuapp.com/api/movies/comedy";
 const musicUrl = "https://striveschool-api.herokuapp.com/api/movies/music";
-const modalWindow = document.querySelector(".modal");
+const modalWindow = document.querySelectorAll(".modal");
 const closeModal = document.querySelector(".close-modal");
-
+console.log(movieCoverGenre);
 const options = {
   method: "GET",
   headers: {
@@ -68,7 +68,6 @@ const getMusicMovies = async () => {
   hiddenPrompts.forEach((prompt) => {
     prompt.classList.remove("d-none");
   });
-  console.log(nameData, descriptionData);
 };
 
 const details = async  () => {
@@ -81,7 +80,8 @@ const details = async  () => {
           const imgData = horrorData.map((data) => data.imageUrl);
           const urlData = horrorData.map((data) => data._id);
           for (let i=0; i<horrorData.length; i++) {
-          modalWindow.innerHTML = `<div class="modal-dialog">
+            modalWindow.forEach(modal => {
+          modal.innerHTML = `<div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header d-flex">
               <h5 class="modal-title">${nameData[i]}</h5>
@@ -100,8 +100,9 @@ const details = async  () => {
             </div>
           </div>
         </div>`
-        console.log(modalWindow);
-        modalWindow.classList.add("popup_active");
+        modal.classList.add("popup_active");
+        console.log(modal);
+      })
           }
     } else if (selectedGenre.innerText === "comedy") {
         const fetchTheComedy = await fetch(comedyUrl, options);
@@ -131,7 +132,6 @@ const details = async  () => {
             </div>
           </div>
         </div>`
-        console.log(modalWindow);
         modalWindow.classList.add("popup_active");
     }} else {
         const fetchTheMusic = await fetch(musicUrl, options);
@@ -142,11 +142,11 @@ const details = async  () => {
         const imgData = musicData.map((data) => data.imageUrl);
         const urlData = musicData.map((data) => data._id);
         for (let i=0; i<musicData.length; i++) {
-          modalWindow.innerHTML = `<div class="modal-dialog">
+          modalWindow[i].innerHTML = `<div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header d-flex">
-              <h5 class="modal-title">${nameData[i]}</h5>
-              <h5 class="modal-subtitle col-12">${categoryData[i]}</h5>
+              <h5 class="modal-title col-12">${nameData[i]}</h5>
+              <h6 class="modal-subtitle col-12">${categoryData[i]}</h6>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -161,8 +161,7 @@ const details = async  () => {
             </div>
           </div>
         </div>`
-        console.log(modalWindow);
-        modalWindow.classList.add("popup_active");
+        modalWindow[i].classList.add("popup_active");
     }
 }
 }

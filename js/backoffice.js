@@ -6,6 +6,7 @@ const params = new URLSearchParams(window.location.search)
 const movieId = params.get('movieId');
 const editBtn = document.getElementById("edit-button");
 const deleteBtn = document.getElementById("delete-button");
+const submitBtn = document.getElementById("submit-button");
 
 
 const getallHorrorMovies = async() => {
@@ -72,8 +73,6 @@ const onFormSubmit = async (event) => {
   }
 
   window.onload = async () => {
-      // We are editing - let's get the event to edit,
-      // and prefill the form with its info.
       const options = {
         headers: {
         Authorization:
@@ -101,6 +100,7 @@ const onFormSubmit = async (event) => {
  if (movieId) {
       const response = await fetch(`https://striveschool-api.herokuapp.com/api/movies/id/${movieId}`, options);
       const movie = await response.json();
+      submitBtn.classList.add("d-none");
       document.getElementById("e-name").value = movie.name;
       document.getElementById("description").value = movie.description;
       document.getElementById("category").value = movie.category;
